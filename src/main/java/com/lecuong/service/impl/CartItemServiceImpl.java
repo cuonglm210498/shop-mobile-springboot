@@ -1,8 +1,6 @@
 package com.lecuong.service.impl;
 
 import com.lecuong.entity.CartItem;
-import com.lecuong.entity.Product;
-import com.lecuong.entity.User;
 import com.lecuong.exception.StatusTemplate;
 import com.lecuong.exception.error.BusinessException;
 import com.lecuong.mapper.cart.CartItemMapper;
@@ -10,7 +8,6 @@ import com.lecuong.mapper.product.ProductMapper;
 import com.lecuong.modal.request.cart.CartSaveRequest;
 import com.lecuong.modal.request.cart.CartUpdateRequest;
 import com.lecuong.modal.response.cart.CartItemResponse;
-import com.lecuong.modal.response.product.ProductResponse;
 import com.lecuong.repository.CartItemRepository;
 import com.lecuong.repository.CartRepository;
 import com.lecuong.security.UserAuthentication;
@@ -22,7 +19,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -39,7 +35,11 @@ public class CartItemServiceImpl implements CartItemService {
 
     @Override
     public void addCart(CartSaveRequest cartSaveRequest) {
-        if (cartRepository.findCartByUserId(cartSaveRequest.getUserId()).isPresent()) {
+
+        //Lay ra id cua user dang login
+        UserDetails userDetails = getUserDetailsFromSecurityContext();
+
+        if (cartRepository.findCartByUserId(userDetails.getUser().getId()).isPresent()) {
             //neu co thong tin cua user thi sẽ them moi cart item
             addCartItem(cartSaveRequest);
         } else {
@@ -75,12 +75,7 @@ public class CartItemServiceImpl implements CartItemService {
     public List<CartItemResponse> getAllItem() {
 
         //Lay ra id cua user dang login
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication == null || !authentication.isAuthenticated()) {
-            throw new BusinessException(StatusTemplate.USER_MUST_LOGIN);
-        }
-        UserAuthentication userAuthentication = (UserAuthentication) SecurityContextHolder.getContext().getAuthentication();
-        UserDetails userDetails = (UserDetails) userAuthentication.getDetails();
+        UserDetails userDetails = getUserDetailsFromSecurityContext();
 
         //Lay ra danh sach cac CartItem cua user dang login
         List<CartItem> cartItem = cartItemRepository.getAllCartItemByUserId(userDetails.getUser().getId());
@@ -104,5 +99,16 @@ public class CartItemServiceImpl implements CartItemService {
         } else {
             cartItemRepository.save(cartItem);
         }
+    }
+
+    public UserDetails getUserDetailsFromSecurityContext() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()) {
+            throw new BusinessException(StatusTemplate.USER_MUST_LOGIN);
+        }
+        UserAuthentication userAuthentication = (UserAuthentication) SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) userAuthentication.getDetails();
+
+        return userDetails;
     }
 }

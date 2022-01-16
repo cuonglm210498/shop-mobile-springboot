@@ -8,5 +8,4 @@ public class CartSaveRequest {
     private Long quantity;
     private Long cartId;
     private Long productId;
-    private Long userId;
 }
