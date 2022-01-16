@@ -5,7 +5,6 @@ import com.lecuong.exception.StatusTemplate;
 import com.lecuong.exception.error.BusinessException;
 import com.lecuong.mapper.cart.CartMapper;
 import com.lecuong.modal.request.cart.CartSaveRequest;
-import com.lecuong.repository.CartItemRepository;
 import com.lecuong.repository.CartRepository;
 import com.lecuong.service.CartService;
 import lombok.Data;

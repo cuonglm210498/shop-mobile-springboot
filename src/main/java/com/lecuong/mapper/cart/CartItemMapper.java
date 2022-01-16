@@ -31,8 +31,10 @@ public class CartItemMapper {
     public CartItemResponse to(CartItem cartItem) {
         CartItemResponse cartItemResponse = new CartItemResponse();
         BeanUtils.refine(cartItem, cartItemResponse, BeanUtils::copyNonNull);
+
         Product product = productRepository.findById(cartItem.getProduct().getId()).get();
         ProductResponse productResponse = productMapper.to(product);
+
         cartItemResponse.setProductResponse(productResponse);
         return cartItemResponse;
     }

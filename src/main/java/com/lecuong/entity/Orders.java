@@ -32,6 +32,9 @@ public class Orders extends BaseEntity {
     @Column
     private String phoneNumber;
 
+    @Column
+    private Double totalAmount;
+
     @OneToMany(mappedBy = "orders")
     private List<OrdersItem> ordersItems = new ArrayList<>();
 

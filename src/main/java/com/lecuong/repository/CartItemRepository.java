@@ -1,7 +1,6 @@
 package com.lecuong.repository;
 
 import com.lecuong.entity.CartItem;
-import com.lecuong.entity.Product;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 

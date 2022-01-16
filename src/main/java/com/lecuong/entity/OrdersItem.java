@@ -15,10 +15,13 @@ import javax.persistence.*;
 public class OrdersItem extends BaseEntity {
 
     @Column
-    private Integer quantity;
+    private Double quantity;
 
     @Column
-    private Double totalAmount;
+    private Double price;
+
+    @Column
+    private Double totalPrice;
 
     @ManyToOne
     @JoinColumn(name = "order_id")

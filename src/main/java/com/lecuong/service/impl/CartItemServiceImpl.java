@@ -14,6 +14,7 @@ import com.lecuong.security.UserAuthentication;
 import com.lecuong.security.UserDetails;
 import com.lecuong.service.CartItemService;
 import com.lecuong.service.CartService;
+import com.lecuong.utils.UserUtils;
 import lombok.Data;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,6 +28,7 @@ import java.util.stream.Collectors;
 @Service
 public class CartItemServiceImpl implements CartItemService {
 
+    private final UserUtils userUtils;
     private final ProductMapper productMapper;
     private final CartItemMapper cartItemMapper;
     private final CartService cartService;
@@ -36,15 +38,17 @@ public class CartItemServiceImpl implements CartItemService {
     @Override
     public void addCart(CartSaveRequest cartSaveRequest) {
 
-        //Lay ra id cua user dang login
-        UserDetails userDetails = getUserDetailsFromSecurityContext();
+        UserDetails userDetails = userUtils.getUserDetailsFromSecurityContext();
 
+        //Lay ra id cua user dang login
         if (cartRepository.findCartByUserId(userDetails.getUser().getId()).isPresent()) {
-            //neu co thong tin cua user thi sẽ them moi cart item
+            //neu co thong tin cua user trong cart thi sẽ them moi cart item
+            cartSaveRequest.setCartId(cartRepository.findCartIdByUserId(userDetails.getUser().getId()));
             addCartItem(cartSaveRequest);
         } else {
             //nguoc lai neu chua co thong tin cua user -> se tao cart cho user và them moi cartitem
             cartService.createCart(cartSaveRequest);
+            cartSaveRequest.setCartId(cartRepository.findCartIdByUserId(userDetails.getUser().getId()));
             addCartItem(cartSaveRequest);
         }
     }
@@ -75,7 +79,7 @@ public class CartItemServiceImpl implements CartItemService {
     public List<CartItemResponse> getAllItem() {
 
         //Lay ra id cua user dang login
-        UserDetails userDetails = getUserDetailsFromSecurityContext();
+        UserDetails userDetails = userUtils.getUserDetailsFromSecurityContext();
 
         //Lay ra danh sach cac CartItem cua user dang login
         List<CartItem> cartItem = cartItemRepository.getAllCartItemByUserId(userDetails.getUser().getId());
@@ -99,16 +103,5 @@ public class CartItemServiceImpl implements CartItemService {
         } else {
             cartItemRepository.save(cartItem);
         }
-    }
-
-    public UserDetails getUserDetailsFromSecurityContext() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication == null || !authentication.isAuthenticated()) {
-            throw new BusinessException(StatusTemplate.USER_MUST_LOGIN);
-        }
-        UserAuthentication userAuthentication = (UserAuthentication) SecurityContextHolder.getContext().getAuthentication();
-        UserDetails userDetails = (UserDetails) userAuthentication.getDetails();
-
-        return userDetails;
     }
 }

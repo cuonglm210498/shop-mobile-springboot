@@ -6,8 +6,6 @@ import com.lecuong.modal.response.BaseResponse;
 import com.lecuong.modal.response.cart.CartItemResponse;
 import com.lecuong.service.CartItemService;
 import lombok.Data;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

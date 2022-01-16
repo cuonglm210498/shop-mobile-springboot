@@ -12,4 +12,7 @@ public interface CartRepository extends BaseRepository<Cart, Long> {
 
     @Query(value = "SELECT * FROM cart c WHERE c.user_id=:id", nativeQuery = true)
     Optional<Cart> findCartByUserId(@Param("id") Long id);
+
+    @Query(value = "select c.id from cart c where c.user_id = :userId", nativeQuery = true)
+    Long findCartIdByUserId(Long userId);
 }
