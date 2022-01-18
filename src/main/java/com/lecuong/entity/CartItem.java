@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class CartItem extends BaseEntity {
 
     @Column
-    private Double quantity;
+    private Long quantity;
 
     @ManyToOne
     @JoinColumn(name = "cart_id")

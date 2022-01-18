@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class OrdersItem extends BaseEntity {
 
     @Column
-    private Double quantity;
+    private Long quantity;
 
     @Column
     private Double price;

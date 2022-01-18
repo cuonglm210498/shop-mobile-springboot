@@ -10,14 +10,11 @@ import com.lecuong.modal.request.cart.CartUpdateRequest;
 import com.lecuong.modal.response.cart.CartItemResponse;
 import com.lecuong.repository.CartItemRepository;
 import com.lecuong.repository.CartRepository;
-import com.lecuong.security.UserAuthentication;
 import com.lecuong.security.UserDetails;
 import com.lecuong.service.CartItemService;
 import com.lecuong.service.CartService;
 import com.lecuong.utils.UserUtils;
 import lombok.Data;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
