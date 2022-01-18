@@ -3,6 +3,8 @@ package com.lecuong.service.impl;
 import com.lecuong.entity.CartItem;
 import com.lecuong.entity.Orders;
 import com.lecuong.entity.OrdersItem;
+import com.lecuong.exception.StatusTemplate;
+import com.lecuong.exception.error.BusinessException;
 import com.lecuong.mapper.order.OrderItemMapper;
 import com.lecuong.mapper.order.OrderMapper;
 import com.lecuong.modal.request.order.OrderItemSaveRequest;
@@ -19,6 +21,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Data
@@ -86,6 +89,13 @@ public class OrderServiceImpl implements OrderService {
         orderResponse.setOrderItemResponses(orderItemResponses);
 
         return orderResponse;
+    }
+
+    @Override
+    public void deleteOrder(Long id) {
+        Optional<Orders> orders = orderRepository.findById(id);
+        orders.orElseThrow(() -> new BusinessException(StatusTemplate.ORDERS_NOT_FOUND));
+        orderRepository.deleteById(id);
     }
 
     public double totalAmount(List<OrdersItem> list) {

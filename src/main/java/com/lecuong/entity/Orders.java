@@ -35,7 +35,7 @@ public class Orders extends BaseEntity {
     @Column
     private Double totalAmount;
 
-    @OneToMany(mappedBy = "orders")
+    @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
     private List<OrdersItem> ordersItems = new ArrayList<>();
 
     @ManyToOne

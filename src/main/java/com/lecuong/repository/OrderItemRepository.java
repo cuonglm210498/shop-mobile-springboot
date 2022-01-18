@@ -13,4 +13,7 @@ public interface OrderItemRepository extends BaseRepository<OrdersItem, Long> {
             "inner join orders o on oi.order_id = o.id\n" +
             "where o.user_id = :userId and o.id = :orderId", nativeQuery = true)
     List<OrdersItem> findAllByUserIdAndOrderId(Long userId, Long orderId);
+
+    @Query(value = "DELETE FROM orders_item oi WHERE oi.order_id = :orderId", nativeQuery = true)
+    void deleteAllByOrdersId(Long orderId);
 }

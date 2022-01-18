@@ -39,4 +39,7 @@ public interface StatusTemplate {
             new StatusResponse("SHOP-CART-ITEM-NOT_FOUND", "Cart item not found", HttpStatus.NOT_FOUND);
     StatusResponse CART_ITEM_EMPTY =
             new StatusResponse("SHOP-CART-ITEM-EMPTY", "Cart item empty", HttpStatus.BAD_REQUEST);
+
+    StatusResponse ORDERS_NOT_FOUND =
+            new StatusResponse("SHOP-ORDERS-NOT_FOUND", "Orders not found", HttpStatus.NOT_FOUND);
 }

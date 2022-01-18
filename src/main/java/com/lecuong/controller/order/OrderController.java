@@ -27,4 +27,10 @@ public class OrderController {
         OrderResponse orderResponse = orderService.getOrder();
         return ResponseEntity.ok(BaseResponse.ofSuccess(orderResponse));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<BaseResponse<Void>> deleteOrder(@PathVariable long id) {
+        orderService.deleteOrder(id);
+        return ResponseEntity.ok(BaseResponse.ofSuccess(null));
+    }
 }
