@@ -12,13 +12,17 @@ import com.lecuong.repository.ProductRepository;
 import com.lecuong.repository.ProviderRepository;
 import com.lecuong.repository.specification.ProductSpecification;
 import com.lecuong.service.ProductService;
+import com.lecuong.utils.ProductExportCsv;
+import com.lecuong.utils.ProductExportExcelUsingSXSSF;
 import lombok.Data;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Data
 @Service
@@ -91,5 +95,26 @@ public class ProductServiceImpl implements ProductService {
         PageRequest pageRequest = PageRequest.of(filterRequest.getPageIndex(), filterRequest.getPageSize());
         Page<Product> products = productRepository.findAll(ProductSpecification.filter(filterRequest), pageRequest.previousOrFirst());
         return products.map(productMapper::to);
+    }
+
+    @Override
+    public List<ProductResponse> getAll() {
+        List<Product> products = productRepository.findAll();
+        List<ProductResponse> productResponses = products.stream().map(productMapper::to).collect(Collectors.toList());
+        return productResponses;
+    }
+
+    @Override
+    public void exportToExcel() {
+        List<ProductResponse> productResponses = this.getAll();
+        final String filePath = "C:\\Users\\Administrator\\Desktop\\CuongLM\\products.xlsx";
+        ProductExportExcelUsingSXSSF.writeExcel(productResponses, filePath);
+    }
+
+    @Override
+    public void exportToCsv() {
+        List<ProductResponse> productResponses = this.getAll();
+        final String filePath = "C:\\Users\\Administrator\\Desktop\\CuongLM\\products.csv";
+        ProductExportCsv.writeCsvFile(productResponses, filePath);
     }
 }

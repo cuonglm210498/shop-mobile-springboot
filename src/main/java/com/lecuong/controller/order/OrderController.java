@@ -24,13 +24,19 @@ public class OrderController {
 
     @GetMapping
     public ResponseEntity<BaseResponse<OrderResponse>> getOrder() {
-        OrderResponse orderResponse = orderService.getOrder();
+        OrderResponse orderResponse = orderService.getOrderByUser();
         return ResponseEntity.ok(BaseResponse.ofSuccess(orderResponse));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<BaseResponse<Void>> deleteOrder(@PathVariable long id) {
         orderService.deleteOrder(id);
+        return ResponseEntity.ok(BaseResponse.ofSuccess(null));
+    }
+
+    @PostMapping("/export-pdf")
+    public ResponseEntity<BaseResponse<Void>> exportOrderToPdf() {
+        orderService.exportOrderToPdf();
         return ResponseEntity.ok(BaseResponse.ofSuccess(null));
     }
 }

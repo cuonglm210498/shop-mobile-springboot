@@ -42,4 +42,7 @@ public interface StatusTemplate {
 
     StatusResponse ORDERS_NOT_FOUND =
             new StatusResponse("SHOP-ORDERS-NOT_FOUND", "Orders not found", HttpStatus.NOT_FOUND);
+
+    StatusResponse EXPORT_EXCEL_ERROR =
+            new StatusResponse("SHOP-EXCEL-ERROR", "Export excel error", HttpStatus.NOT_FOUND);
 }

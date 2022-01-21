@@ -7,7 +7,9 @@ public interface OrderService {
 
     void createOrder(OrderItemSaveRequest ordersItemSaveRequest);
 
-    OrderResponse getOrder();
+    OrderResponse getOrderByUser();
 
     void deleteOrder(Long id);
+
+    void exportOrderToPdf();
 }

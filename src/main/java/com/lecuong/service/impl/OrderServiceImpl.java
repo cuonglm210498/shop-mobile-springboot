@@ -1,5 +1,6 @@
 package com.lecuong.service.impl;
 
+import com.lecuong.constant.JasperParam;
 import com.lecuong.entity.CartItem;
 import com.lecuong.entity.Orders;
 import com.lecuong.entity.OrdersItem;
@@ -15,13 +16,17 @@ import com.lecuong.security.UserDetails;
 import com.lecuong.service.OrderService;
 import com.lecuong.utils.UserUtils;
 import lombok.Data;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Data
@@ -75,7 +80,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderResponse getOrder() {
+    public OrderResponse getOrderByUser() {
 
         UserDetails userDetails = userUtils.getUserDetailsFromSecurityContext();
         Long userId = userDetails.getUser().getId();
@@ -96,6 +101,34 @@ public class OrderServiceImpl implements OrderService {
         Optional<Orders> orders = orderRepository.findById(id);
         orders.orElseThrow(() -> new BusinessException(StatusTemplate.ORDERS_NOT_FOUND));
         orderRepository.deleteById(id);
+    }
+
+    @Override
+    public void exportOrderToPdf() {
+        String path = "C:\\Users\\Administrator\\Downloads";
+        OrderResponse orderResponse = this.getOrderByUser();
+        try {
+            File file = ResourceUtils.getFile("classpath:order.jrxml");
+            JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+            Map<String, Object> mapParams = new HashMap<>();
+            mapParams.put(JasperParam.P_ORDER_ID, orderResponse.getId());
+            mapParams.put(JasperParam.P_RECEIVER, orderResponse.getRecipient());
+            mapParams.put(JasperParam.P_ADDRESS, orderResponse.getShippingAddress());
+            mapParams.put(JasperParam.P_ORDERER, orderResponse.getOrderer());
+            mapParams.put(JasperParam.P_STATUS, orderResponse.getStatus());
+            mapParams.put(JasperParam.P_PHONE_NUMBER, orderResponse.getPhoneNumber());
+            mapParams.put(JasperParam.P_TOTAL_AMOUNT, new BigDecimal(orderResponse.getTotalAmount()));
+
+            JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(orderResponse.getOrderItemResponses());
+            mapParams.put(JasperParam.P_ORDER_ITEM, dataSource);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, mapParams, new JREmptyDataSource());
+
+            JasperExportManager.exportReportToPdfFile(jasperPrint, path + "\\order.pdf");
+
+        } catch (FileNotFoundException | JRException e) {
+            e.printStackTrace();
+        }
     }
 
     public double totalAmount(List<OrdersItem> list) {

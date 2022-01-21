@@ -50,4 +50,16 @@ public class ProductController {
         Page<ProductResponse> productResponses = productService.filter(filterRequest);
         return ResponseEntity.ok(BaseResponse.ofSuccess(productResponses));
     }
+
+    @PostMapping("/export-excel")
+    public ResponseEntity<BaseResponse<Void>> exportExcel() {
+        productService.exportToExcel();
+        return ResponseEntity.ok(BaseResponse.ofSuccess(null));
+    }
+
+    @PostMapping("/export-csv")
+    public ResponseEntity<BaseResponse<Void>> exportCsv() {
+        productService.exportToCsv();
+        return ResponseEntity.ok(BaseResponse.ofSuccess(null));
+    }
 }

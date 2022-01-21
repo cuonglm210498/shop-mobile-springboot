@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7b6dffc3-a3bd-43c7-8daf-ba4d2d7fa89a">
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+    <style name="Table_TH" mode="Opaque" backcolor="#FFFFFF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+            <topPen lineWidth="0.5" lineColor="#000000"/>
+            <leftPen lineWidth="0.5" lineColor="#000000"/>
+            <bottomPen lineWidth="0.5" lineColor="#000000"/>
+            <rightPen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="Table_CH" mode="Opaque" backcolor="#FFFFFF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+            <topPen lineWidth="0.5" lineColor="#000000"/>
+            <leftPen lineWidth="0.5" lineColor="#000000"/>
+            <bottomPen lineWidth="0.5" lineColor="#000000"/>
+            <rightPen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+            <topPen lineWidth="0.5" lineColor="#000000"/>
+            <leftPen lineWidth="0.5" lineColor="#000000"/>
+            <bottomPen lineWidth="0.5" lineColor="#000000"/>
+            <rightPen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <subDataset name="listOrderItem" uuid="81628bc0-13e2-47be-af1c-2622ae0dd6ee">
+        <queryString>
+            <![CDATA[]]>
+        </queryString>
+        <field name="productName" class="java.lang.String"/>
+        <field name="quantity" class="java.lang.Long"/>
+        <field name="price" class="java.lang.Double"/>
+        <field name="totalPrice" class="java.lang.Double"/>
+    </subDataset>
+    <parameter name="p_order_id" class="java.lang.Long"/>
+    <parameter name="p_receiver" class="java.lang.String"/>
+    <parameter name="p_address" class="java.lang.String"/>
+    <parameter name="p_status" class="java.lang.String"/>
+    <parameter name="p_orderer" class="java.lang.String"/>
+    <parameter name="p_phone_number" class="java.lang.String"/>
+    <parameter name="p_order_item" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+    <parameter name="p_total_amount" class="java.math.BigDecimal"/>
+    <queryString>
+        <![CDATA[]]>
+    </queryString>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="80" splitType="Stretch">
+            <staticText>
+                <reportElement x="0" y="0" width="560" height="80" uuid="f690330e-b2aa-445c-aa51-8444278d963d"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[CQ Mobile
+
+Địa chỉ: Minh Khai - Bắc Từ Liêm - TP Hà Nội
+
+SĐT: 0354947766 - Email: lemanhcuong0498@gmail.com]]></text>
+            </staticText>
+        </band>
+    </title>
+    <detail>
+        <band height="513" splitType="Stretch">
+            <line>
+                <reportElement x="0" y="10" width="560" height="1" uuid="14e98bf6-b141-4368-94b6-e42b9a943387"/>
+            </line>
+            <staticText>
+                <reportElement x="150" y="30" width="260" height="30" uuid="404852b0-109a-44aa-87f0-33305f6824df"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times" size="18" isBold="true"/>
+                </textElement>
+                <text><![CDATA[HÓA ĐƠN THANH TOÁN]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="40" y="90" width="60" height="20" uuid="726ea764-59d4-40cf-90ba-b0656e092fca"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="Times" size="10"/>
+                </textElement>
+                <text><![CDATA[Mã HĐ: ]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="300" y="110" width="60" height="20" uuid="324630dc-24c6-4bdc-9cf6-aa6c7010841a"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="Times" size="10"/>
+                </textElement>
+                <text><![CDATA[Người đặt:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="40" y="130" width="70" height="30" uuid="900feb0d-f95c-4df3-9b6d-77d759468d8c"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="Times" size="10"/>
+                </textElement>
+                <text><![CDATA[Đ/c nhận hàng:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="40" y="110" width="60" height="20" uuid="99c576c6-ffa9-422a-8b89-5d41f9eb9da2"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="Times" size="10"/>
+                </textElement>
+                <text><![CDATA[Người nhận:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="300" y="130" width="80" height="26" uuid="c92a77e9-4c4e-495c-a492-a1f0276eafe6"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="Times" size="10"/>
+                </textElement>
+                <text><![CDATA[SĐT người nhận:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="300" y="90" width="60" height="20" uuid="a7713fdb-e9ac-4d59-a9cf-93289745a957"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="Times" size="10"/>
+                </textElement>
+                <text><![CDATA[Ghi chú:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="110" y="90" width="90" height="20" uuid="7dbf2acc-5798-4cdd-8683-d8d85e37e0e7"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="Times" size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{p_order_id}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="110" y="110" width="159" height="20" uuid="f3d15864-5c65-42f6-9ee8-cd53ee9587f0"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="Times" size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{p_receiver}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="110" y="130" width="170" height="40" uuid="8a03438d-db58-4a00-8f20-7ad2e274004b"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="Times" size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{p_address}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="360" y="110" width="90" height="20" uuid="956a5641-6e75-4981-a7f8-714d85f9f042"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="Times" size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{p_orderer}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="380" y="130" width="90" height="27" uuid="d799d286-4e56-4787-b73a-df9eb767ef76"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="Times" size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{p_phone_number}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="360" y="90" width="200" height="20" uuid="0ec4ce4d-de85-4eb4-952f-d9cb720d9a68"/>
+                <textElement verticalAlignment="Middle">
+                    <font fontName="Times"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{p_status}]]></textFieldExpression>
+            </textField>
+            <componentElement>
+                <reportElement x="40" y="200" width="460" height="60" uuid="1416ef83-d24b-4c24-8a15-f45a893a8757">
+                    <property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+                    <property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+                    <property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+                    <property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+                </reportElement>
+                <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+                    <datasetRun subDataset="listOrderItem" uuid="1abee01b-afb6-42d9-88ca-f7292b95ba85">
+                        <dataSourceExpression><![CDATA[$P{p_order_item}]]></dataSourceExpression>
+                    </datasetRun>
+                    <jr:column width="150" uuid="afd89c5a-a002-4194-b269-3932bd98a18a">
+                        <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+                        <jr:columnHeader style="Table_CH" height="30">
+                            <staticText>
+                                <reportElement x="0" y="0" width="150" height="30" uuid="12d40b6e-0107-49b8-958e-ca2a382d00db"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font fontName="Times" size="10" isBold="true"/>
+                                </textElement>
+                                <text><![CDATA[Tên sản phẩm]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell style="Table_TD" height="30">
+                            <textField>
+                                <reportElement x="0" y="0" width="150" height="30" uuid="40d6fb83-2d15-4cbc-ba0d-4df5acecdfcd"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font fontName="Times" size="10"/>
+                                </textElement>
+                                <textFieldExpression><![CDATA[$F{productName}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                    <jr:column width="70" uuid="fcd18b94-0c27-48be-aeea-e534840e1c32">
+                        <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+                        <jr:columnHeader style="Table_CH" height="30">
+                            <staticText>
+                                <reportElement x="0" y="0" width="70" height="30" uuid="ba3db5a5-f010-4518-823b-f1b9276e03ef"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font fontName="Times" size="10" isBold="true"/>
+                                </textElement>
+                                <text><![CDATA[Số lượng]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell style="Table_TD" height="30">
+                            <textField>
+                                <reportElement x="0" y="0" width="70" height="30" uuid="75bcc7d3-865b-4abf-8b89-709d8b8ab356"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font fontName="Times" size="10"/>
+                                </textElement>
+                                <textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                    <jr:column width="120" uuid="15c230a0-a5c1-4269-aedd-e0085c9a6af9">
+                        <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+                        <jr:columnHeader style="Table_CH" height="30">
+                            <staticText>
+                                <reportElement x="0" y="0" width="120" height="30" uuid="93b639c1-2b22-48a4-bd15-932142125ab6"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font fontName="Times" size="10" isBold="true"/>
+                                </textElement>
+                                <text><![CDATA[Đơn giá]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell style="Table_TD" height="30">
+                            <textField>
+                                <reportElement x="0" y="0" width="120" height="30" uuid="90f464a5-4854-43b3-8104-11477c679c3f"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font fontName="Times" size="10"/>
+                                </textElement>
+                                <textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                    <jr:column width="120" uuid="049cbdbd-4d8a-4584-8046-0ed41aeed9cf">
+                        <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
+                        <jr:columnHeader style="Table_CH" height="30">
+                            <staticText>
+                                <reportElement x="0" y="0" width="120" height="30" uuid="03cf9c89-21cf-49fa-a9fe-1af414f9dff1"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font fontName="Times" size="10" isBold="true"/>
+                                </textElement>
+                                <text><![CDATA[Thành tiền]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell style="Table_TD" height="30">
+                            <textField>
+                                <reportElement x="0" y="0" width="120" height="30" uuid="e364f144-d7a6-4723-8255-4eda2e7a0279"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font fontName="Times" size="10"/>
+                                </textElement>
+                                <textFieldExpression><![CDATA[$F{totalPrice}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                </jr:table>
+            </componentElement>
+            <staticText>
+                <reportElement x="40" y="365" width="100" height="30" uuid="f8992e40-39e4-4a25-ae1f-f66066b2afc2"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times" size="16" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Người bán]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="380" y="365" width="100" height="30" uuid="2d73f3e2-adc2-4512-a371-d7665db6b2bf"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times" size="16" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Người mua]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="120" y="300" width="100" height="30" uuid="39927f88-20ec-403a-81b7-6adc0bcfcf9e"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="Times" size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{p_total_amount}]]></textFieldExpression>
+            </textField>
+            <textField pattern="MMMMM dd, yyyy">
+                <reportElement x="305" y="473" width="250" height="40" uuid="5ff2f489-1677-4a77-8d1b-c07383bf2eb4"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times" size="14" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Nam Định, ngày " + new SimpleDateFormat("dd").format(new Date()) + ", tháng " + new SimpleDateFormat("MM").format(new Date()) + ", năm " + new SimpleDateFormat("yyyy").format(new Date())]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="40" y="300" width="80" height="30" uuid="9640e452-4888-48a6-8890-1dee34e04877"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times" size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Tổng tiền:]]></text>
+            </staticText>
+        </band>
+    </detail>
+</jasperReport>
